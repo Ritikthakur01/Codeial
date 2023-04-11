@@ -14,3 +14,4 @@ db.on("error",console.error.bind(console,"Error found while connect with mongodb
 db.once("open",function(){
     console.log("Sucessfully connected with MongoDb database")
 })
+

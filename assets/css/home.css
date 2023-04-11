@@ -7,15 +7,9 @@ main {
   background-color: rgb(138, 171, 197);
   margin: 0%;
 }
-main h2 {
+main h1 {
   font-weight: 400;
   color: black;
 }
-main h2 div {
-  margin: 10px 0px;
-}
-main h2 div span {
-  color: rgb(255, 255, 255);
-}
 
-/*# sourceMappingURL=profile.css.map */
+/*# sourceMappingURL=home.css.map */
