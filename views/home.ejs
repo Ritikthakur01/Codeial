@@ -1,6 +1,29 @@
 <link rel="stylesheet" href="/css/home.css">
 <main>
-    <h1>Codeial : <%= title%></h1>
-</main>
 
-    
+    <% if(locals.user) {%>
+        <form action="/post/create" id="new_form_post" method="post">
+            <textarea class="textarea" placeholder="Type..." name="content" cols="40" rows="5"></textarea>
+            <button class="post-button">Post</button>
+        </form>
+        <%}%>
+            <div id="user-posts">
+                <ul>
+                    <% for(post of posts_list) { %>
+                        <%-include ('_post')%>
+                    <%}%>
+                </ul>
+            </div>
+
+            <section id="user-friends">
+                <h4>Friends</h4>
+                <%for(user of all_users) { %>
+                        <p>
+                            <a href="/user/profile/<%=user._id%>">
+                                <%= user.name %>
+                            </a>
+                        </p>
+                <%}%>
+            </section>
+</main>
+<script src="/js/home_post.js"></script>

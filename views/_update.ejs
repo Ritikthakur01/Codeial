@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/css/update.css">
+
+<main>
+    <img src="<%= profile_user.avatar %>" width="100px" height="100px" alt="">
+    <form action="/user/update/<%=profile_user.id%>" enctype="multipart/form-data" method="post">
+        <input type="text" name="name" value="<%=profile_user.name %>">
+        <input type="email" name="username" value="<%=profile_user.username %>">
+        <input type="file" id="avatar" name="avatar">
+        <button>Update</button>
+    </form>
+</main>

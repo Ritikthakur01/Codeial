@@ -10,6 +10,9 @@ const passport=require('passport');
 const passport_local=require('./config/passport-local')
 const MongoStore=require('connect-mongo')
 
+const flash=require("connect-flash")
+const modifiedMware=require("./config/middelware")
+
 // for compiling sass into css file in middelware
 // const sassMiddelware=require('sass-middleware')
 
@@ -31,6 +34,9 @@ app.use(express.urlencoded())
 // using cookies
 app.use(cookies())
 
+
+app.use('/uploads',express.static(__dirname+"/uploads"))
+
 // extract style and script
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
@@ -48,7 +54,7 @@ app.use(express.static('assets'))
 app.use(session({
     name:'codeial',
     //Todo change secret value in the production mode
-    secret:'whatthefuckissessionandcookies',
+    secret:'wgyhbjbjhbkjm',
     saveUninitialized:false,  //whenever  their is a req or session which is not initailse (user identity is not etablish ) , do i svae their data in session cookies / NOT 
     resave:false,  //user identity is  etablish , do i save their data again and again in session cookies / NOT 
     cookie:{
@@ -70,6 +76,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(passport.setAuthenticatedUserforView)
+// flash messages stores in session when we refreash the flash goes out
+app.use(flash())
+app.use(modifiedMware.setflash)
+
 
 // use express route.
 app.use('/',require('./routes'));

@@ -2,12 +2,18 @@
 
     <!-- <h1>Codeial : <%= title %></h1> -->
 <main>
-    <h2>
-        <div>
-            Name : <span><%= user.name %></span>
-        </div>
-        <div>
-            Email : <span><%= user.username %></span>
-        </div>
-    </h2>
+    
+    <%if (user.id==profile_user.id) {%>
+        <!-- if user matches then show te form -->
+        <%- include("_update")-%>
+    <%}else{%>
+        <h2>
+            <div>
+                Name : <span><%= profile_user.name %></span>
+            </div>
+            <div>
+                Email : <span><%= profile_user.username %></span>
+            </div>
+        </h2>
+    <%}%>
 </main>

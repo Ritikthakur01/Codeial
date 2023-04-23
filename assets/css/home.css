@@ -2,14 +2,47 @@ main {
   height: 80vh;
   width: auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  align-items: first baseline;
+  justify-content: space-around;
   background-color: rgb(138, 171, 197);
   margin: 0%;
 }
-main h1 {
-  font-weight: 400;
-  color: black;
+main form {
+  display: flex;
+  flex-direction: column;
+}
+main form textarea {
+  border-radius: 20px;
+  padding-left: 20px;
+  border: none;
+  outline: none;
+  padding-top: 10px;
+}
+main form .post-button {
+  margin-top: 10%;
+  width: 80px;
+  height: 28px;
+  background-color: rgb(44, 113, 186);
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: medium;
+}
+main form .comment-button {
+  margin-top: 10%;
+  width: 160px;
+  height: 28px;
+  background-color: rgb(44, 113, 186);
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: medium;
+}
+main #user-posts {
+  margin-right: 10%;
 }
 
 /*# sourceMappingURL=home.css.map */
