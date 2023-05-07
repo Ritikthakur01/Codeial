@@ -6,12 +6,20 @@ const cookies=require("cookie-parser")
 const expresslayout=require("express-ejs-layouts") // requiring express-ejs-layouts for setting layout
 //used session cookies
 const session=require('express-session');
+
 const passport=require('passport');
 const passport_local=require('./config/passport-local')
+const passport_jwt=require("./config/passport-jwt")
+const passport_google=require("./config/passport-goggle-oauth")
+
 const MongoStore=require('connect-mongo')
 
 const flash=require("connect-flash")
 const modifiedMware=require("./config/middelware")
+
+
+const chatServer=require("./chatServer")
+
 
 // for compiling sass into css file in middelware
 // const sassMiddelware=require('sass-middleware')

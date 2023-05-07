@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/css/chat_box.css">
+<% if(locals.user) { %>
+    <div id="user_chat_box">
+        <div id="delete">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </div>
+        <div class="message-list">
+            <div class="chat-list">
+                <ul id="other-message">
+                    <!-- <li>
+                        <span>Other message</span>
+                        <h6>Kittu Thakur</h6>
+                    </li>
+                    -->
+                </ul>
+            </div>
+            <div class="chat-list">
+                <ul id="self-message">
+                    <!-- <li>
+                        <span>Self message</span>
+                        <h6>Kittu Thakur</h6>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="message-controller">
+            <input id="message" type="text" placeholder="Type messages" name="message">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+<% } %>

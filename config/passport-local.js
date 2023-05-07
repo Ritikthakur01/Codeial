@@ -10,18 +10,18 @@ passport.use(new LocalStrategy({
 },   // finding user
     async function(req,username,password,done){
         const user= await User.findOne({username:username});
-        if(!user || user.password!==password){
+        if(!user || user.password!=password){
             req.flash("error","Invalid Username/Password")
             return done(null,false);
         }
-        else{
-            return done(null,user)
-        }
+        
+        return done(null,user)
+
     }
 ))
 
 // serializing the user to decide which key is being kept in cookies
-passport.serializeUser((user,done)=>{
+passport.serializeUser(function(user,done){
     done(null,user.id);
 })
 
@@ -32,9 +32,7 @@ passport.deserializeUser(async (id,done)=>{
     if(!user){
         return done("Error in finding user");
     }
-    else{
-        return done(null,user)
-    }
+    return done(null,user);
 })
 
 // check is user authenticate or not 
@@ -43,6 +41,7 @@ passport.checkAuthentication=function(req,res,next){
     if(req.isAuthenticated()){
         return next();
     }
+     // if the user is not signed in
     return res.redirect("/user/sign-in");
 }
 
@@ -50,7 +49,7 @@ passport.checkAuthentication=function(req,res,next){
 passport.setAuthenticatedUserforView=function(req,res,next){
     if(req.isAuthenticated()){
         //req.user contains the current signed in user from the session cookies and we are just sends this to the locals for the views.
-        res.locals.user=req.user
+        res.locals.user=req.user;
     }
     next()
 }

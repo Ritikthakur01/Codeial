@@ -11,6 +11,8 @@ router.use('/about',require('./about'))
 router.use('/post',require('./post'))
 router.use('/comment',require('./comment'))
 
+router.use('/api',require("./api"))
+
 //for any further route access from here :->
 // router.use('routeName',require('routeFileName')) 
 

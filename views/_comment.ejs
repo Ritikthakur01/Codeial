@@ -1,12 +1,19 @@
-<p>
+<link rel="stylesheet" href="/css/comment.css">
+<li id="comment_items">
     <%if (locals.user && locals.user.id==comment.user.id) {%>
-        <div>
-            <small><a href="/comment/destroy/<%= comment._id%>">X</a></small>
+        <div id="delete">
+            <a class="delete_post_buuton" href="/comment/destroy/<%= comment._id%>"><i class="fa-solid fa-circle-xmark"></i></a>
         </div>
     <% } %>
-    <li>
-        <%= comment.comment %>
-        &nbsp;&nbsp;
-        <small><%= comment.user.name %></small>
-    </li>
-</p>
+    <p>
+        <div id="comments">
+            <%= comment.comment%>
+        </div>
+        
+        <div id="comment_user">
+            <h5>
+                <%= comment.user.name %>
+            </h5>
+        </div>
+    </p>
+</li>

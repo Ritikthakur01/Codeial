@@ -1,16 +1,16 @@
 <link rel="stylesheet" href="/css/home.css">
 <main>
+    <% if(_locals.user) {%>
 
-    <% if(locals.user) {%>
         <form action="/post/create" id="new_form_post" method="post">
-            <textarea class="textarea" placeholder="Type..." name="content" cols="40" rows="5"></textarea>
+            <textarea id="post_area" class="textarea" placeholder="Type..." name="content" cols="40" rows="5"></textarea>
             <button class="post-button">Post</button>
         </form>
-        <%}%>
+    <%}%>
             <div id="user-posts">
                 <ul>
                     <% for(post of posts_list) { %>
-                        <%-include ('_post')%>
+                        <%- include('_post') -%>
                     <%}%>
                 </ul>
             </div>
@@ -25,5 +25,19 @@
                         </p>
                 <%}%>
             </section>
+            <%- include("chat_box") -%>
 </main>
+
 <script src="/js/home_post.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
+
+<script src="/js/chatEngine.js"></script>
+
+<!-- initiate class  -->
+ <%=console.log("This is Home's locals :- ",locals.user)%>
+<% if(_locals.user) {%>
+<script>
+    new ChatEngine("user_chat_box","<%=_locals.user.username%>","<%=_locals.user.name%>")
+</script>
+<%}%>

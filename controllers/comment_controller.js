@@ -1,5 +1,10 @@
 const Comment=require('../models/comment')
 const Post=require('../models/posts')
+const commentMailer=require("../mail/comment_mailer")
+
+const queue=require("../config/kue");
+const comment_mail_worker=require("../workers/comment_email_worker");
+
 
 module.exports.create=async function(req,res){
     const post=await Post.findById(req.body.post)
@@ -8,7 +13,7 @@ module.exports.create=async function(req,res){
         return;
     }
     else{
-        const comment= await Comment.create({
+        let comment= await Comment.create({
                             comment:req.body.comment,
                             user:req.user._id,
                             post:req.body.post     
@@ -20,6 +25,20 @@ module.exports.create=async function(req,res){
         else{
             post.comments.push(comment)
             post.save()
+            comment=await comment.populate("user","name username")
+            // commentMailer.newCommentMail(comment)
+            
+            let job=queue.create("emails",comment).save(err=>{
+                if(err){
+                    console.log(err);
+                    return
+                }
+                else{
+                    console.log("job created",job.id);
+                    return
+                }
+            })
+
             req.flash("success","Comment Added")
             return res.redirect("back")
         }
